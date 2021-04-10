@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="warn" name="MyApp" packages="">
+   <Properties>
+    <!--<Property name="baseDir">f:\logs</Property>-->
+  </Properties>
+    <Appenders>
+       
+        <RollingFile name="RollingFile" fileName="${sys:logfilename}/${sys:logfilename}.log"
+                     filePattern="${sys:logfilename}/${sys:logfilename}-%d{yyyy-MM-dd}-%i.log">
+            
+			<PatternLayout>
+                <Pattern>%d %c [%t] %m%n</Pattern>
+            </PatternLayout>
+			
+            <Policies>
+                <!--<OnStartupTriggeringPolicy/>-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+            
+        </RollingFile>
+        </Appenders>
+    
+    <Loggers>
+        <Root level="all">
+            	<!--<AppenderRef ref="Mail" level="error" />-->
+            <AppenderRef ref="RollingFile"/>
+                   </Root>
+    </Loggers>
+</Configuration>
